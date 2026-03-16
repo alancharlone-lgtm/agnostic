@@ -19,45 +19,103 @@ Backend hosted on **Google Cloud Run** — 100% serverless, scalable, and always
 - **Flutter (Android)** for the fully reactive, hands-free UI
 
 ### 1. The Big Picture (Macro Architecture)
-A high-level view of how the system orchestrates data between the user, the cloud, and external APIs.
+A complete system view showing user modes, main agents, Google AI models, and external APIs.
 
 ```mermaid
-flowchart TD
-    %% Estilos limpios
-    classDef mobile fill:#0d2b5a,stroke:#2a6dd9,color:#fff
-    classDef cloud  fill:#0a1f0a,stroke:#2e7a2e,color:#fff
-    classDef gemini fill:#2a0808,stroke:#8b2020,color:#fff
-    classDef external fill:#1a1000,stroke:#664400,color:#fff
+flowchart TB
+    %% ── STYLES ──────────────────────────────────────────────────────────────
+    classDef user     fill:#1a1a2e,stroke:#6c63ff,color:#d0d0ff
+    classDef mode     fill:#0d2244,stroke:#2a6dd9,color:#90caff
+    classDef frontend fill:#0a1e3a,stroke:#1a52a0,color:#7ab8ff
+    classDef ws       fill:#071428,stroke:#0e3070,color:#5a90d9
+    classDef backend  fill:#041504,stroke:#1e5c1e,color:#70b870
+    classDef agent    fill:#0a2010,stroke:#2a7a2a,color:#90e090
+    classDef googleai fill:#2a0808,stroke:#8b2020,color:#ffaaaa
+    classDef firebase fill:#1a0600,stroke:#883300,color:#ff9a65
+    classDef external fill:#0a1000,stroke:#445500,color:#aacc66
 
-    User(("🧑‍🔧 User\n(Voice & Camera)"))
-    
-    subgraph Frontend ["📱 Flutter App (Frontend)"]
-        UI["Hands-Free Interface\nMic & Cam"]:::mobile
+    %% ── USER EXPERIENCE LAYER ───────────────────────────────────────────────
+    subgraph UX ["🧑‍🔧  User Experience — App Modes"]
+        direction LR
+        MODO_RES["🔵 Residencial Mode\n(Professional Technician)\nDirect answers, max speed"]:::mode
+        MODO_HOG_DIR["🟢 Hogar — Reparación Directa\n(Beginner — Step by Step)"]:::mode
+        MODO_HOG_APR["🟡 Hogar — Modo Aprendizaje\n(Beginner — Socratic Coach)"]:::mode
     end
 
-    subgraph Backend ["☁️ Google Cloud Run (Backend)"]
-        ROOT["🧠 ADK Root Orchestrator\n(gemini-2.0-flash-lite)"]:::cloud
-        AGENTS["⚙️ Platoon of Specialized Agents\n(Safety, Repair, Logistics, RAG)"]:::cloud
+    %% ── FLUTTER FRONTEND ────────────────────────────────────────────────────
+    subgraph FE ["📱 Flutter Android App (Frontend)"]
+        direction LR
+        MIC["🎤 Microphone\nVoice Input"]:::frontend
+        CAM["📷 Camera (1 FPS)\nVisual Context"]:::frontend
+        SPK["🔊 Speaker\nAI Voice Output"]:::frontend
+        OVR["📲 Live Screen Overlays\nBounding Boxes · Imagen 3 Guide · Logistics Cards"]:::frontend
     end
 
-    subgraph GoogleAI ["🤖 Google GenAI Ecosystem"]
-        GEMINI["🔴 Gemini 2.0 Flash Live\n(Bidirectional Streaming)"]:::gemini
-        IMAGEN["🖼️ Imagen 3 / NanoBanana\n(Visual Generation)"]:::gemini
+    WS(["🔌 WebSocket\n(Bidirectional · wss://)"]):::ws
+
+    %% ── BACKEND (CLOUD RUN) ─────────────────────────────────────────────────
+    subgraph BE ["☁️  Google Cloud Run — FastAPI Backend"]
+        direction TB
+        LIVE["🔴 Gemini 2.0 Flash Live Session\nReal-time bidi audio + vision · barge-in · function_calls"]:::googleai
+        ROOT["🧠 ADK Root Orchestrator\nRoutes each user request to the right specialist agent"]:::backend
+
+        subgraph AGENTS ["⚙️  ADK Specialized Agents (Hive)"]
+            direction LR
+            SAFETY["🛑 Safety Visual Gate\nBlocks repair until\ncircuit breaker OFF confirmed by camera"]:::agent
+            EAGLE["👁️ Eagle Eye Vision\nGenerates bounding boxes\n(coordinate overlay on camera)"]:::agent
+            REPAIR["🔧 Direct Repair Architect\nStep-by-step repair plan\n(Hogar Directa + Residencial)"]:::agent
+            MENTOR["🎓 Socratic Mentor\nTeaches through questions\n(Hogar Aprendizaje)"]:::agent
+            LOGIS["📦 Logistics & Pricing\nMaps → local stores\nRoutes → fastest path\nML → online prices"]:::agent
+            IMAG_A["🖼️ Visual Guide (Imagen 3)\nInpaints repair steps\non live camera frame"]:::agent
+            RAG["🧠 RAG Hive Mind\nRetrieves verified repairs\nfrom collective knowledge base"]:::agent
+        end
+        TORCH["🔦 Flashlight Control"]:::backend
     end
 
-    subgraph External ["🌐 External Grounding & Data"]
-        FIREBASE[("🔥 Firestore\n(Vector DB / Hive Mind)")]:::external
-        APIS["🌍 External APIs\n(Maps, Routes, MercadoLibre)"]:::external
+    %% ── GOOGLE AI ──────────────────────────────────────────────────────────
+    subgraph GAI ["🤖  Google GenAI Ecosystem"]
+        direction LR
+        GL["Gemini 2.0 Flash Live\nBidi audio stream"]:::googleai
+        GF["Gemini 2.0 Flash Lite Preview\nAll ADK model calls"]:::googleai
+        EMB["Text Embeddings\ngemini-embedding-001"]:::googleai
+        IM3["Imagen 3\n(Nano Banana API)"]:::googleai
     end
 
-    %% Conexiones principales (Flujo macro)
-    User <-->|Speaks & Shows| UI
-    UI <-->|"WebSocket\n(PCM Audio + Video)"| Backend
-    Backend <-->|"Live API Session"| GEMINI
-    ROOT -->|"Delegates Tasks"| AGENTS
-    AGENTS -->|"Inpainting"| IMAGEN
-    AGENTS <-->|"Retrieves Past Repairs"| FIREBASE
-    AGENTS <-->|"Live Prices & Traffic"| APIS
+    %% ── EXTERNAL DATA ──────────────────────────────────────────────────────
+    subgraph EXT ["🌐  External APIs & Data Services"]
+        direction LR
+        FS[("🔥 Firestore\nVector DB\n(Hive Mind)")]:::firebase
+        MAPS["🗺️ Google Maps\nNearby stores"]:::external
+        ROUTES["🚦 Google Routes\nTraffic-aware path"]:::external
+        GSRCH["🔍 Google Search\nManuals grounding"]:::external
+        ML["🛒 MercadoLibre\nLive pricing & links"]:::external
+    end
+
+    %% ── CONNECTIONS ────────────────────────────────────────────────────────
+    %% Mode selection shapes how agents respond
+    MODO_RES  -- "→ triggers" --> REPAIR
+    MODO_HOG_DIR -- "→ triggers" --> REPAIR
+    MODO_HOG_APR -- "→ triggers" --> MENTOR
+
+    %% Frontend ↔ Backend via WebSocket
+    MIC & CAM -->|"Audio + Video stream"| WS
+    WS -->|"AI voice + events"| SPK & OVR
+    WS <-->|"Persistent connection"| BE
+
+    %% Backend internal flow
+    LIVE <-->|"Audio stream"| ROOT
+    ROOT --> SAFETY & EAGLE & REPAIR & MENTOR & LOGIS & IMAG_A & RAG & TORCH
+
+    %% AI Models
+    LIVE <-->|bidi| GL
+    ROOT & AGENTS -->|model calls| GF
+    RAG --> EMB
+    IMAG_A --> IM3
+
+    %% External data
+    RAG <-->|vector search| FS
+    LOGIS --> MAPS & ROUTES & ML
+    REPAIR & MENTOR --> GSRCH
 ```
 
 ---
