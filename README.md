@@ -18,6 +18,81 @@ Backend hosted on **Google Cloud Run** — 100% serverless, scalable, and always
 - **RAG Hive Mind** — verified repairs stored as vector embeddings in Firestore
 - **Flutter (Android)** for the fully reactive, hands-free UI
 
+```mermaid
+graph TD
+    %% Estilos Profesionales
+    classDef frontend fill:#02569B,stroke:#fff,stroke-width:2px,color:#fff,rx:5px,ry:5px
+    classDef cloud fill:#0E81D4,stroke:#fff,stroke-width:2px,color:#fff,rx:5px,ry:5px
+    classDef gemini fill:#EA4335,stroke:#fff,stroke-width:2px,color:#fff,rx:5px,ry:5px
+    classDef adk fill:#34A853,stroke:#fff,stroke-width:2px,color:#fff,rx:5px,ry:5px
+    classDef db fill:#FBBC05,stroke:#fff,stroke-width:2px,color:#000,rx:5px,ry:5px
+    classDef api fill:#4285F4,stroke:#fff,stroke-width:2px,color:#fff,rx:5px,ry:5px
+
+    %% Capa 1: Frontend (Flutter)
+    subgraph "📱 Frontend (Flutter en Android / Smart Glasses)"
+        UI[Hands-Free UI]:::frontend
+        Mic[Micrófono & Speaker]:::frontend
+        Cam[Cámara (1 FPS)]:::frontend
+    end
+
+    %% Router (WebSockets)
+    WS((WebSockets Server)):::cloud
+
+    %% Capa 2: Backend & Orquestación (Cloud Run)
+    subgraph "☁️ Google Cloud Run Backend (FastAPI)"
+        RootAgent[🧠 ADK Root Agent (Orchestrator)]:::adk
+        
+        subgraph "ADK Specialized Agents Hive"
+            Safety[🛑 Safety Verification Agent]:::adk
+            Vision[👁️ Vision Precision Agent]:::adk
+            Logistic[📦 Logistics & Pricing Agent]:::adk
+            Mentor[🎓 Universal Socratic Mentor]:::adk
+            Repair[🔧 Direct Repair Architect]:::adk
+        end
+        
+        RAG[📚 RAG Hive Mind Manager]:::adk
+    end
+
+    %% Capa 3: Modelos & Servicios (Google GenAI)
+    subgraph "🤖 Google GenAI Ecosystem"
+        GeminiLive[Gemini 2.0 Flash Live API]:::gemini
+        GeminiLite[Gemini 2.0 Flash Lite Preview]:::gemini
+        Embeddings[Text Embeddings API]:::gemini
+        Imagen[Imagen 3 (vía Nano Banana API)]:::gemini
+    end
+
+    %% Capa 4: Base de Datos y APIs Externas
+    subgraph "🗄️ Knowledge & External Grounding"
+        Firestore[(Firebase/Firestore Vector DB)]:::db
+        MercadoLibre[MercadoLibre API]:::api
+        Search[Google Search API]:::api
+    end
+
+    %% Conexiones: Frontend <-> Backend
+    UI <-->|JSON + Base64| WS
+    Mic <-->|PCM Audio 16kHz Stream| WS
+    Cam -->|JPEG Frames| WS
+    WS <--> RootAgent
+
+    %% Conexiones: Orquestación
+    RootAgent -->|Contexto & Route| Safety
+    RootAgent <-->|Aprobación LOTO| Repair
+    RootAgent -->|Detección de Interés| Logistic
+    RootAgent -->|Modo Aprendizaje| Mentor
+
+    %% Conexiones: ADK a Gemini Models
+    WS <-->|Audio Bidi| GeminiLive
+    Safety -->|Análisis Visual Crítico| GeminiLite
+    Vision -->|Bounding Boxes| GeminiLite
+    Repair -->|Inpainting Prompt| Imagen
+
+    %% Conexiones: Bases y APIs
+    RAG -->|Vector Search| Firestore
+    RAG -->|Generar Embeddings| Embeddings
+    Mentor <-->|Grounding de Manuales| Search
+    Logistic <-->|Real-time Prices| MercadoLibre
+```
+
 ---
 
 ## 🚀 Quick Start (Spin-up Instructions for Judges)
@@ -83,6 +158,95 @@ flutter build apk --release
 # Install on Android device:
 adb install build/app/outputs/flutter-apk/app-release.apk
 ```
+
+## 🧪 Testing Guide — How to Test Agnostic
+
+### 📱 App Modes — What to Know Before Testing
+
+Agnostic has two main modes selectable from the UI:
+
+| Mode | Who it's for | What it does |
+|------|-------------|--------------|
+| **Residencial (Residential)** | Professional technicians | Gets straight to the fix with no explanations. Maximum speed. |
+| **Hogar (Home)** | Hobbyists & beginners | Two sub-modes available: see below. |
+
+**Hogar sub-modes (selectable by voice or intent):**
+- 🔧 **Reparación Directa** — Step-by-step repair instructions, fast and actionable, but adapted for non-experts.
+- 🎓 **Modo Aprendizaje (Socratic Mode)** — Agnostic doesn't give the answer directly. Instead, it asks guiding questions to help you understand *why* each step is done, teaching as it helps.
+
+---
+
+### Test 1 — 🔧 Residencial vs. Hogar (Mode Comparison)
+**Goal:** Verify the behavior difference between the two modes.
+
+1. Select **"Residencial"** mode. Point the camera at a fan. Say: _"El capacitor no arranca el motor."_
+   - **Expected:** Direct diagnosis and fix steps. Zero explanations, maximum speed.
+2. Switch to **"Hogar"** mode. Repeat the same question.
+   - **Expected:** Agnostic asks: _"¿Cuándo fue la última vez que lo usaste?"_ or _"¿Escuchás algún zumbido?"_ — leading you to understand the root cause.
+
+---
+
+### Test 2 — 🎓 Socratic Learning Mode
+1. Select **"Hogar"** mode and activate **Modo Aprendizaje** (say: _"Quiero aprender mientras reparo"_).
+2. Point the camera at an outlet with disconnected wires.
+3. Say: _"No sé cómo conectar estos cables."_
+4. **Expected:** Agnostic asks questions like _"¿Cuántos cables ves? ¿Podés identificar los colores?"_ — never directly giving the answer until you demonstrate understanding.
+
+---
+
+### Test 3 — 🛑 Mandatory Safety Gate
+1. Point the camera at exposed wires with a connected device visible.
+2. Say: _"Voy a empezar la reparación."_
+3. **Expected:** Agnostic **blocks all progress** and demands you show the circuit breaker in the OFF position through the camera before it proceeds. The Safety Agent must visually confirm the OFF state — verbal confirmation alone is NOT enough.
+
+---
+
+### Test 4 — 👁️ Visual Bounding Box (Eagle Eye Agent)
+1. Point the camera at any device with multiple components.
+2. Say: _"¿Dónde está el capacitor?"_ or _"Marcame los cables."_
+3. **Expected:** Within 2-3 seconds, a green labeled rectangle appears drawn directly over the correct component on your camera feed — no interruption to the voice conversation.
+
+---
+
+### Test 5 — 🖼️ Generative Visual Guide (Imagen 3 via Nano Banana)
+1. Point the camera at an outlet or switch with disconnected cables.
+2. Say: _"Generá una guía visual de cómo van los cables."_
+3. **Expected:** Within ~10 seconds, a photorealistic generated image appears in the app showing cables drawn into the exact correct terminals, using your real camera frame as the base.
+
+---
+
+### Test 6 — 📦 Live Logistics Engine (Full Flow)
+**Goal:** Verify the complete parts-sourcing intelligence.
+
+**This is what happens when you say "I need a spare part":**
+
+1. Point the camera at a broken component and say: _"El capacitor del ventilador está roto. ¿Dónde lo consigo?"_
+
+2. **Step A — Nearby Store Search:**
+   - Agnostic uses your **real GPS location** (captured on app start) to search Google Maps for nearby electronics / spare parts stores.
+   - It visits those stores' websites to search for the specific part's current price.
+
+3. **Step B — Traffic-Optimized Route:**
+   - Agnostic uses **Google Routes API** to calculate traffic conditions in real time.
+   - It recommends **the store with the shortest travel time** (not just the closest in distance) based on current traffic.
+
+4. **Step C — MercadoLibre Price Comparison:**
+   - In parallel, it searches MercadoLibre for the same part.
+   - **Expected screen result:** A tappable overlay card appears with **both options side by side**: the local store price + estimated travel time, versus the MercadoLibre online price + delivery time. The technician decides.
+
+5. **Expected backend logs:** `[RAG] Logística: 3 locales encontrados`, `[ML] Link directo extraído: https://mercadolibre.com/...`
+
+---
+
+### Test 7 — 🧠 Hive Mind (RAG Collective Knowledge)
+1. Describe a common repair: _"El lavarropas no calienta el agua bien."_
+2. **Expected:** Agnostic answers citing a **specific past repair** performed by another technician, not a generic model answer. Check backend logs for: `[RAG] Experiencia similar encontrada (score: 0.82)`.
+
+---
+
+### Test 8 — 🔦 Flashlight Control
+1. Say: _"Enciende la linterna."_ → LED turns on immediately.
+2. Say: _"Apaga la linterna."_ → LED turns off.
 
 ---
 
