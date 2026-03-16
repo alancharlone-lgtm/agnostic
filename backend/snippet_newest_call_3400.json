@@ -1,0 +1,100 @@
+﻿  },
+  {
+    "insertId": "69aafbb500057d017db0241d",
+    "labels": {
+      "instanceId": "00da6cd2c44a97e586f513529829d26c3d791f7e96e5b20ff4e4e5c90338377c5abc49030cd308529c1eb815114d7588e4b823208681535df36f1e4e09acb5187bf74e2e996cac2cab9235d155"
+    },
+    "logName": "projects/stok-7bc5c/logs/run.googleapis.com%2Fstdout",
+    "receiveTimestamp": "2026-03-06T16:07:17.375124058Z",
+    "resource": {
+      "labels": {
+        "configuration_name": "agnostic-live-backend",
+        "location": "us-central1",
+        "project_id": "stok-7bc5c",
+        "revision_name": "agnostic-live-backend-00061-vc8",
+        "service_name": "agnostic-live-backend"
+      },
+      "type": "cloud_run_revision"
+    },
+    "textPayload": "  args={",
+    "timestamp": "2026-03-06T16:07:17.359681Z"
+  },
+  {
+    "insertId": "69aafbb500057cf1442962ea",
+    "labels": {
+      "instanceId": "00da6cd2c44a97e586f513529829d26c3d791f7e96e5b20ff4e4e5c90338377c5abc49030cd308529c1eb815114d7588e4b823208681535df36f1e4e09acb5187bf74e2e996cac2cab9235d155"
+    },
+    "logName": "projects/stok-7bc5c/logs/run.googleapis.com%2Fstdout",
+    "receiveTimestamp": "2026-03-06T16:07:17.375124058Z",
+    "resource": {
+      "labels": {
+        "configuration_name": "agnostic-live-backend",
+        "location": "us-central1",
+        "project_id": "stok-7bc5c",
+        "revision_name": "agnostic-live-backend-00061-vc8",
+        "service_name": "agnostic-live-backend"
+      },
+      "type": "cloud_run_revision"
+    },
+    "textPayload": "*** GEMINI QUIERE LLAMAR A UNA HERRAMIENTA: function_calls=[FunctionCall(",
+    "timestamp": "2026-03-06T16:07:17.359665Z"
+  },
+  {
+    "insertId": "69aafbb50000acf640debe0c",
+    "labels": {
+      "instanceId": "00da6cd2c44a97e586f513529829d26c3d791f7e96e5b20ff4e4e5c90338377c5abc49030cd308529c1eb815114d7588e4b823208681535df36f1e4e09acb5187bf74e2e996cac2cab9235d155"
+    },
+    "logName": "projects/stok-7bc5c/logs/run.googleapis.com%2Fstdout",
+    "receiveTimestamp": "2026-03-06T16:07:17.375124058Z",
+    "resource": {
+      "labels": {
+        "configuration_name": "agnostic-live-backend",
+        "location": "us-central1",
+        "project_id": "stok-7bc5c",
+        "revision_name": "agnostic-live-backend-00061-vc8",
+        "service_name": "agnostic-live-backend"
+      },
+      "type": "cloud_run_revision"
+    },
+    "textPayload": "DEBUG TRANSCRIPT OUTPUT:  cortada?",
+    "timestamp": "2026-03-06T16:07:17.044278Z"
+  },
+  {
+    "insertId": "69aafbb4000ed2dad3d3b2bb",
+    "labels": {
+      "instanceId": "00da6cd2c44a97e586f513529829d26c3d791f7e96e5b20ff4e4e5c90338377c5abc49030cd308529c1eb815114d7588e4b823208681535df36f1e4e09acb5187bf74e2e996cac2cab9235d155"
+    },
+    "logName": "projects/stok-7bc5c/logs/run.googleapis.com%2Fstdout",
+    "receiveTimestamp": "2026-03-06T16:07:17.036940479Z",
+    "resource": {
+      "labels": {
+        "configuration_name": "agnostic-live-backend",
+        "location": "us-central1",
+        "project_id": "stok-7bc5c",
+        "revision_name": "agnostic-live-backend-00061-vc8",
+        "service_name": "agnostic-live-backend"
+      },
+      "type": "cloud_run_revision"
+    },
+    "textPayload": "DEBUG TRANSCRIPT OUTPUT:  est?",
+    "timestamp": "2026-03-06T16:07:16.971482Z"
+  },
+  {
+    "insertId": "69aafbb4000b05ded13092dc",
+    "labels": {
+      "instanceId": "00da6cd2c44a97e586f513529829d26c3d791f7e96e5b20ff4e4e5c90338377c5abc49030cd308529c1eb815114d7588e4b823208681535df36f1e4e09acb5187bf74e2e996cac2cab9235d155"
+    },
+    "logName": "projects/stok-7bc5c/logs/run.googleapis.com%2Fstdout",
+    "receiveTimestamp": "2026-03-06T16:07:17.036940479Z",
+    "resource": {
+      "labels": {
+        "configuration_name": "agnostic-live-backend",
+        "location": "us-central1",
+        "project_id": "stok-7bc5c",
+        "revision_name": "agnostic-live-backend-00061-vc8",
+        "service_name": "agnostic-live-backend"
+      },
+      "type": "cloud_run_revision"
+    },
+    "textPayload": "DEBUG IN: Received vision frame from camera",
+    "timestamp": "2026-03-06T16:07:16.722398Z"

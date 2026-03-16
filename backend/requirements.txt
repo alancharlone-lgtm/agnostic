@@ -1,0 +1,10 @@
+fastapi
+uvicorn
+pydantic
+websockets
+google-genai
+python-dotenv
+httpx
+google-adk>=1.17.0
+pillow
+google-cloud-firestore

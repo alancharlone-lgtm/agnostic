@@ -1,0 +1,136 @@
+<!DOCTYPE html>
+<html lang="es">
+
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Agnostic - Ecosistema Residencial Asíncrono</title>
+    <script src="https://cdn.tailwindcss.com"></script>
+    <style>
+        @import url('https://fonts.googleapis.com/css2?family=Outfit:wght@300;400;600;700&display=swap');
+
+        body {
+            background-color: #020617;
+            color: #f8fafc;
+            font-family: 'Outfit', sans-serif;
+            margin: 0;
+            display: flex;
+            flex-direction: column;
+            align-items: center;
+            min-height: 100vh;
+            padding: 40px 20px;
+        }
+
+        .premium-card {
+            background: rgba(30, 41, 59, 0.4);
+            backdrop-filter: blur(16px);
+            border: 1px solid rgba(255, 255, 255, 0.08);
+            border-radius: 2.5rem;
+            box-shadow: 0 25px 50px -12px rgba(0, 0, 0, 0.7);
+            width: 100%;
+            max-width: 1100px;
+            padding: 50px;
+        }
+
+        .glow-title {
+            text-shadow: 0 0 30px rgba(45, 212, 191, 0.4);
+        }
+
+        .mermaid {
+            background: white;
+            padding: 30px;
+            border-radius: 20px;
+            margin: 30px 0;
+        }
+    </style>
+</head>
+
+<body>
+    <div class="premium-card">
+        <header class="text-center mb-10">
+            <h1
+                class="text-5xl font-bold bg-gradient-to-r from-teal-400 to-emerald-500 bg-clip-text text-transparent glow-title mb-4">
+                Arquitectura Residencial + Búsqueda Asíncrona
+            </h1>
+            <p class="text-slate-400 text-lg">Visión Proactiva + Búsqueda Documental Non-Blocking en Paralelo.</p>
+        </header>
+
+        <div class="mermaid">
+            flowchart TD
+            %% Estilos
+            classDef orq fill:#134e4a,stroke:#2dd4bf,stroke-width:4px,color:#fff,font-weight:bold
+            classDef loop fill:#0f172a,stroke:#fbbf24,stroke-width:2px,color:#fbbf24,stroke-dasharray: 5 5
+            classDef ghost fill:#334155,stroke:#64748b,stroke-width:1px,color:#fff,opacity:0.8
+            classDef memory fill:#1e293b,stroke:#2dd4bf,stroke-width:2px,color:#2dd4bf
+            classDef user fill:#065f46,stroke:#34d399,stroke-width:2px,color:#fff
+            classDef know fill:#92400e,stroke:#fbbf24,stroke-width:2px,color:#fff
+
+            %% Nodos Principales
+            Start(("🚀 Inicio Sesión")) --> Orq["🧠 ORQUESTADOR LIVE"]:::orq
+            User[👤 Alan Técnico]
+
+            %% Proactive Loop
+            subgraph ProactiveLoop ["⚙️ Bucle Silencioso (Primeros 3 seg)"]
+            F1["📸 3 Frames Análisis Visual"]:::ghost
+            end
+
+            Orq ==> ProactiveLoop
+            ProactiveLoop --> Tool["🛠️ handle_vision_result SILENT"]:::loop
+            Tool --> Memory[("💾 MEMORIA PRECARGADA")]:::memory
+
+            %% Interactor y Lanzamiento en Paralelo
+            User -.-> Q1("1. Técnico reporta problema: 'Esto no anda'")
+            Q1 --> Orq
+            Memory -.->|"2. Inyecta Data"| Orq
+
+            Orq -.->|"3a. Respuesta Oral Inmediata"| User
+
+            subgraph AsyncSearch ["📚 Tools de Búsqueda de Manuales (NON_BLOCKING)"]
+            LocalSearch["📖 Manual Interno"]:::know
+            WebSearch["🌐 Manual Internet (Google)"]:::know
+            end
+
+            Orq ==>|"3b. Búsqueda en paralelo"| AsyncSearch
+
+            %% Retorno de Respuesta de Manuales
+            AsyncSearch -.->|"4. Retorno (WHEN_IDLE)"| Orq
+            Orq -.->|"5. Continúa Guía con Manual"| User
+        </div>
+
+        <div class="grid grid-cols-1 md:grid-cols-2 gap-6 mt-10">
+            <div class="p-5 rounded-2xl bg-amber-500/10 border border-amber-500/20">
+                <h3 class="text-amber-400 font-bold mb-2">⚡ 1. Visión Proactiva (Silent)</h3>
+                <p class="text-slate-400 text-sm">Al inicio de la transmisión las fotos alimentan y cargan de memoria de
+                    contexto a Gemini antes de que el técnico hable.</p>
+            </div>
+            <div class="p-5 rounded-2xl bg-teal-500/10 border border-teal-500/20">
+                <h3 class="text-teal-400 font-bold mb-2">🧠 2. Respuesta Cero Lag</h3>
+                <p class="text-slate-400 text-sm">El Orquestador junta lo que sabe de la cámara y lo que el técnico
+                    menciona para dar una respuesta inmediata.</p>
+            </div>
+            <div class="p-5 rounded-2xl bg-slate-500/10 border border-slate-500/20">
+                <h3 class="text-slate-300 font-bold mb-2">🚀 3. Paralelismo (Non-Blocking)</h3>
+                <p class="text-slate-400 text-sm">Mientras el bot contesta, dispara herramientas de búsqueda locales e
+                    internet en segundo plano.</p>
+            </div>
+            <div class="p-5 rounded-2xl bg-emerald-500/10 border border-emerald-500/20">
+                <h3 class="text-emerald-400 font-bold mb-2">🎯 4. Inyección Documental</h3>
+                <p class="text-slate-400 text-sm">Cuando el bot termina de hablar, procesa el manual encontrado para
+                    seguir la guía sin interrupciones.</p>
+            </div>
+        </div>
+    </div>
+
+    <script type="module">
+        import mermaid from 'https://cdn.jsdelivr.net/npm/mermaid@10/dist/mermaid.esm.min.mjs';
+        mermaid.initialize({
+            startOnLoad: true,
+            theme: 'dark',
+            securityLevel: 'loose',
+            fontFamily: 'Outfit',
+            flowchart: { curve: 'stepBefore', htmlLabels: false }
+        });
+    </script>
+</body>
+
+</html>

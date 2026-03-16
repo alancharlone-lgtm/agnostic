@@ -1,0 +1,140 @@
+openapi: 3.0.0
+info:
+  title: Agnostic Agent Tools API
+  description: API definitions for Agnostic agents to interact with local hardware, ERP systems, and mobile inventory. This specification is designed to be imported into Google Cloud Vertex AI Agent Builder.
+  version: 1.0.0
+servers:
+  - url: https://API_URL_AQUI/api # IMPORTANTE: Reemplazar con la URL real de tu backend o túnel Ngrok
+paths:
+  /check_erp_stock:
+    get:
+      summary: Consulta disponibilidad de repuestos en el pañol de la fábrica.
+      operationId: check_erp_stock
+      parameters:
+        - name: part_number
+          in: query
+          description: Número o código de parte a buscar.
+          required: true
+          schema:
+            type: string
+      responses:
+        '200':
+          description: Resultado del stock en el ERP.
+          content:
+            application/json:
+              schema:
+                type: object
+                properties:
+                  part: {type: string}
+                  stock: {type: integer}
+                  location: {type: string}
+                  message: {type: string}
+
+  /safety_guardian_agent:
+    get:
+      summary: Obtiene protocolos de seguridad y riesgos específicos para una tarea y máquina.
+      operationId: safety_guardian_agent
+      parameters:
+        - name: machine
+          in: query
+          required: true
+          schema:
+            type: string
+        - name: task
+          in: query
+          required: true
+          schema:
+            type: string
+      responses:
+        '200':
+          description: Reglas de seguridad y EPP requerido.
+          content:
+            application/json:
+              schema:
+                type: object
+                properties:
+                  ppe_required: 
+                    type: array
+                    items: {type: string}
+                  critical_risks: {type: string}
+                  loto_procedure: {type: string}
+                  watchdog_triggers:
+                    type: array
+                    items: {type: string}
+
+  /control_esp32_flashlight:
+    post:
+      summary: Enciende o apaga la linterna montada en las gafas ESP32.
+      operationId: control_esp32_flashlight
+      requestBody:
+        required: true
+        content:
+          application/json:
+            schema:
+              type: object
+              properties:
+                action:
+                  type: string
+                  enum: [on, off]
+                  description: Acción a realizar (encender o apagar).
+      responses:
+        '200':
+          description: Estado de la linterna actualizado.
+          content:
+            application/json:
+              schema:
+                type: object
+                properties:
+                  status: {type: string}
+
+  /create_work_order:
+    post:
+      summary: Genera y cierra una orden de trabajo industrial en el sistema ERP.
+      operationId: create_work_order
+      requestBody:
+        required: true
+        content:
+          application/json:
+            schema:
+              type: object
+              properties:
+                machine: {type: string}
+                issue: {type: string}
+                part_needed: {type: string, default: "None"}
+      responses:
+        '200':
+          description: Orden de trabajo creada exitosamente.
+          content:
+            application/json:
+              schema:
+                type: object
+                properties:
+                  work_order_id: {type: string}
+                  status: {type: string}
+                  message: {type: string}
+
+  /local_stock_agent:
+    post:
+      summary: Revisa, agrega o quita stock de la camioneta del técnico residencial.
+      operationId: local_stock_agent
+      requestBody:
+        required: true
+        content:
+          application/json:
+            schema:
+              type: object
+              properties:
+                action: 
+                  type: string
+                  enum: [check, add, remove]
+                item: {type: string}
+                quantity: {type: integer, default: 1}
+      responses:
+        '200':
+          description: Resultado de la operación de inventario.
+          content:
+            application/json:
+              schema:
+                type: object
+                properties:
+                  result: {type: string}

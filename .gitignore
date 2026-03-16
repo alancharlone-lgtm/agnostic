@@ -1,0 +1,80 @@
+# Byte-compiled / optimized / DLL files
+__pycache__/
+*.py[cod]
+*$py.class
+
+# Virtual environments
+venv/
+.venv/
+env/
+
+# Secrets — NEVER commit these
+.env
+.env.local
+.env.production
+service_account*.json
+*credentials*.json
+
+# Node modules (MCP server dependencies)
+node_modules/
+package-lock.json
+
+# Flutter / Dart build artifacts
+frontend/agnostic_app/.dart_tool/
+frontend/agnostic_app/.flutter-plugins
+frontend/agnostic_app/.flutter-plugins-dependencies
+frontend/agnostic_app/build/
+frontend/agnostic_app/.packages
+frontend/agnostic_app/pubspec.lock
+frontend/agnostic_app/android/.gradle/
+frontend/agnostic_app/android/local.properties
+frontend/agnostic_app/android/key.properties
+
+# Android build artifacts
+*.apk
+*.aab
+
+# Test output and temp files
+backend/tmp_*.txt
+backend/*.log
+
+# Large log dumps (JSON & TXT)
+backend/*_utf8.json
+backend/latest_*.json
+backend/verification_logs*.json
+backend/transcript_logs.json
+backend/tool_duration.json
+backend/working_service_description.json
+backend/live_backend_logs.json
+frontend/agnostic_app/*_logs.json
+frontend/agnostic_app/*.txt
+backend/*_logs*.txt
+backend/debug_*.txt
+backend/error_*.txt
+backend/latest_*.txt
+*.txt
+!requirements.txt
+!CMakeLists.txt
+backend/test_logistics_*.txt
+backend/test_web_prices*.txt
+backend/test_google_prices*.txt
+backend/test_latest_output.txt
+backend/adk_test_output*.txt
+backend/adk_inspect.txt
+
+# Debug/deploy logs at root level
+backend_logs.txt
+debug_logs.txt
+debug_logs_utf8.txt
+deploy_verification_logs.txt
+error_logs.txt
+
+# IDE
+.vscode/
+.idea/
+*.swp
+*.swo
+
+# OS files
+Thumbs.db
+.DS_Store

@@ -1,0 +1,150 @@
+﻿        "configuration_name": "agnostic-live-backend",
+        "location": "us-central1",
+        "project_id": "stok-7bc5c",
+        "revision_name": "agnostic-live-backend-00061-vc8",
+        "service_name": "agnostic-live-backend"
+      },
+      "type": "cloud_run_revision"
+    },
+    "textPayload": "  name='generar_guia_visual_ensamblaje'",
+    "timestamp": "2026-03-06T16:06:10.495928Z"
+  },
+  {
+    "insertId": "69aafb72000791358a503da9",
+    "labels": {
+      "instanceId": "00da6cd2c44a97e586f513529829d26c3d791f7e96e5b20ff4e4e5c90338377c5abc49030cd308529c1eb815114d7588e4b823208681535df36f1e4e09acb5187bf74e2e996cac2cab9235d155"
+    },
+    "logName": "projects/stok-7bc5c/logs/run.googleapis.com%2Fstdout",
+    "receiveTimestamp": "2026-03-06T16:06:10.771272079Z",
+    "resource": {
+      "labels": {
+        "configuration_name": "agnostic-live-backend",
+        "location": "us-central1",
+        "project_id": "stok-7bc5c",
+        "revision_name": "agnostic-live-backend-00061-vc8",
+        "service_name": "agnostic-live-backend"
+      },
+      "type": "cloud_run_revision"
+    },
+    "textPayload": "  id='function-call-4797748524723987034',",
+    "timestamp": "2026-03-06T16:06:10.495925Z"
+  },
+  {
+    "insertId": "69aafb7200079133eeb4a3e2",
+    "labels": {
+      "instanceId": "00da6cd2c44a97e586f513529829d26c3d791f7e96e5b20ff4e4e5c90338377c5abc49030cd308529c1eb815114d7588e4b823208681535df36f1e4e09acb5187bf74e2e996cac2cab9235d155"
+    },
+    "logName": "projects/stok-7bc5c/logs/run.googleapis.com%2Fstdout",
+    "receiveTimestamp": "2026-03-06T16:06:10.771272079Z",
+    "resource": {
+      "labels": {
+        "configuration_name": "agnostic-live-backend",
+        "location": "us-central1",
+        "project_id": "stok-7bc5c",
+        "revision_name": "agnostic-live-backend-00061-vc8",
+        "service_name": "agnostic-live-backend"
+      },
+      "type": "cloud_run_revision"
+    },
+    "textPayload": "  },",
+    "timestamp": "2026-03-06T16:06:10.495923Z"
+  },
+  {
+    "insertId": "69aafb72000791303b464430",
+    "labels": {
+      "instanceId": "00da6cd2c44a97e586f513529829d26c3d791f7e96e5b20ff4e4e5c90338377c5abc49030cd308529c1eb815114d7588e4b823208681535df36f1e4e09acb5187bf74e2e996cac2cab9235d155"
+    },
+    "logName": "projects/stok-7bc5c/logs/run.googleapis.com%2Fstdout",
+    "receiveTimestamp": "2026-03-06T16:06:10.771272079Z",
+    "resource": {
+      "labels": {
+        "configuration_name": "agnostic-live-backend",
+        "location": "us-central1",
+        "project_id": "stok-7bc5c",
+        "revision_name": "agnostic-live-backend-00061-vc8",
+        "service_name": "agnostic-live-backend"
+      },
+      "type": "cloud_run_revision"
+    },
+    "textPayload": "    'detalles_tecnicos': 'Conexi?n de cables (negro, marr?n, azul, rojo) a bornes centrales de m?dulo blanco. Verificar polaridad y ajuste.'",
+    "timestamp": "2026-03-06T16:06:10.495920Z"
+  },
+  {
+    "insertId": "69aafb720007912d62f5495f",
+    "labels": {
+      "instanceId": "00da6cd2c44a97e586f513529829d26c3d791f7e96e5b20ff4e4e5c90338377c5abc49030cd308529c1eb815114d7588e4b823208681535df36f1e4e09acb5187bf74e2e996cac2cab9235d155"
+    },
+    "logName": "projects/stok-7bc5c/logs/run.googleapis.com%2Fstdout",
+    "receiveTimestamp": "2026-03-06T16:06:10.771272079Z",
+    "resource": {
+      "labels": {
+        "configuration_name": "agnostic-live-backend",
+        "location": "us-central1",
+        "project_id": "stok-7bc5c",
+        "revision_name": "agnostic-live-backend-00061-vc8",
+        "service_name": "agnostic-live-backend"
+      },
+      "type": "cloud_run_revision"
+    },
+    "textPayload": "  args={",
+    "timestamp": "2026-03-06T16:06:10.495917Z"
+  },
+  {
+    "insertId": "69aafb7200079121045ce2f7",
+    "labels": {
+      "instanceId": "00da6cd2c44a97e586f513529829d26c3d791f7e96e5b20ff4e4e5c90338377c5abc49030cd308529c1eb815114d7588e4b823208681535df36f1e4e09acb5187bf74e2e996cac2cab9235d155"
+    },
+    "logName": "projects/stok-7bc5c/logs/run.googleapis.com%2Fstdout",
+    "receiveTimestamp": "2026-03-06T16:06:10.771272079Z",
+    "resource": {
+      "labels": {
+        "configuration_name": "agnostic-live-backend",
+        "location": "us-central1",
+        "project_id": "stok-7bc5c",
+        "revision_name": "agnostic-live-backend-00061-vc8",
+        "service_name": "agnostic-live-backend"
+      },
+      "type": "cloud_run_revision"
+    },
+    "textPayload": "*** GEMINI QUIERE LLAMAR A UNA HERRAMIENTA: function_calls=[FunctionCall(",
+    "timestamp": "2026-03-06T16:06:10.495905Z"
+  },
+  {
+    "insertId": "69aafb720003ebcd23da631a",
+    "labels": {
+      "instanceId": "00da6cd2c44a97e586f513529829d26c3d791f7e96e5b20ff4e4e5c90338377c5abc49030cd308529c1eb815114d7588e4b823208681535df36f1e4e09acb5187bf74e2e996cac2cab9235d155"
+    },
+    "logName": "projects/stok-7bc5c/logs/run.googleapis.com%2Fstdout",
+    "receiveTimestamp": "2026-03-06T16:06:10.437109297Z",
+    "resource": {
+      "labels": {
+        "configuration_name": "agnostic-live-backend",
+        "location": "us-central1",
+        "project_id": "stok-7bc5c",
+        "revision_name": "agnostic-live-backend-00061-vc8",
+        "service_name": "agnostic-live-backend"
+      },
+      "type": "cloud_run_revision"
+    },
+    "textPayload": "DEBUG IN: Audio flowing (~10 seconds worth of chunks)...",
+    "timestamp": "2026-03-06T16:06:10.256973Z"
+  },
+  {
+    "insertId": "69aafb720003e7ae3196d840",
+    "labels": {
+      "instanceId": "00da6cd2c44a97e586f513529829d26c3d791f7e96e5b20ff4e4e5c90338377c5abc49030cd308529c1eb815114d7588e4b823208681535df36f1e4e09acb5187bf74e2e996cac2cab9235d155"
+    },
+    "logName": "projects/stok-7bc5c/logs/run.googleapis.com%2Fstdout",
+    "receiveTimestamp": "2026-03-06T16:06:10.437109297Z",
+    "resource": {
+      "labels": {
+        "configuration_name": "agnostic-live-backend",
+        "location": "us-central1",
+        "project_id": "stok-7bc5c",
+        "revision_name": "agnostic-live-backend-00061-vc8",
+        "service_name": "agnostic-live-backend"
+      },
+      "type": "cloud_run_revision"
+    },
+    "textPayload": "DEBUG TRANSCRIPT OUTPUT:  precauci?n.",
+    "timestamp": "2026-03-06T16:06:10.255918Z"

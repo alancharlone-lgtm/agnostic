@@ -1,0 +1,200 @@
+﻿    "textPayload": "*** GEMINI QUIERE LLAMAR A UNA HERRAMIENTA: function_calls=[FunctionCall(",
+    "timestamp": "2026-03-06T16:05:32.425269Z"
+  },
+  {
+    "insertId": "69aafb4c00060fdf76346ae8",
+    "labels": {
+      "instanceId": "00da6cd2c44a97e586f513529829d26c3d791f7e96e5b20ff4e4e5c90338377c5abc49030cd308529c1eb815114d7588e4b823208681535df36f1e4e09acb5187bf74e2e996cac2cab9235d155"
+    },
+    "logName": "projects/stok-7bc5c/logs/run.googleapis.com%2Fstdout",
+    "receiveTimestamp": "2026-03-06T16:05:32.474019617Z",
+    "resource": {
+      "labels": {
+        "configuration_name": "agnostic-live-backend",
+        "location": "us-central1",
+        "project_id": "stok-7bc5c",
+        "revision_name": "agnostic-live-backend-00061-vc8",
+        "service_name": "agnostic-live-backend"
+      },
+      "type": "cloud_run_revision"
+    },
+    "textPayload": "DEBUG TRANSCRIPT OUTPUT:  ??",
+    "timestamp": "2026-03-06T16:05:32.397279Z"
+  },
+  {
+    "insertId": "69aafb4c00037164e565063c",
+    "labels": {
+      "instanceId": "00da6cd2c44a97e586f513529829d26c3d791f7e96e5b20ff4e4e5c90338377c5abc49030cd308529c1eb815114d7588e4b823208681535df36f1e4e09acb5187bf74e2e996cac2cab9235d155"
+    },
+    "logName": "projects/stok-7bc5c/logs/run.googleapis.com%2Fstdout",
+    "receiveTimestamp": "2026-03-06T16:05:32.474019617Z",
+    "resource": {
+      "labels": {
+        "configuration_name": "agnostic-live-backend",
+        "location": "us-central1",
+        "project_id": "stok-7bc5c",
+        "revision_name": "agnostic-live-backend-00061-vc8",
+        "service_name": "agnostic-live-backend"
+      },
+      "type": "cloud_run_revision"
+    },
+    "textPayload": "DEBUG TRANSCRIPT OUTPUT:  el?ctrico.",
+    "timestamp": "2026-03-06T16:05:32.225636Z"
+  },
+  {
+    "insertId": "69aafb4c00022804b878bf12",
+    "labels": {
+      "instanceId": "00da6cd2c44a97e586f513529829d26c3d791f7e96e5b20ff4e4e5c90338377c5abc49030cd308529c1eb815114d7588e4b823208681535df36f1e4e09acb5187bf74e2e996cac2cab9235d155"
+    },
+    "logName": "projects/stok-7bc5c/logs/run.googleapis.com%2Fstdout",
+    "receiveTimestamp": "2026-03-06T16:05:32.474019617Z",
+    "resource": {
+      "labels": {
+        "configuration_name": "agnostic-live-backend",
+        "location": "us-central1",
+        "project_id": "stok-7bc5c",
+        "revision_name": "agnostic-live-backend-00061-vc8",
+        "service_name": "agnostic-live-backend"
+      },
+      "type": "cloud_run_revision"
+    },
+    "textPayload": "DEBUG TRANSCRIPT OUTPUT:  riesgo",
+    "timestamp": "2026-03-06T16:05:32.141316Z"
+  },
+  {
+    "insertId": "69aafb4c00003e3bda0b36c0",
+    "labels": {
+      "instanceId": "00da6cd2c44a97e586f513529829d26c3d791f7e96e5b20ff4e4e5c90338377c5abc49030cd308529c1eb815114d7588e4b823208681535df36f1e4e09acb5187bf74e2e996cac2cab9235d155"
+    },
+    "logName": "projects/stok-7bc5c/logs/run.googleapis.com%2Fstdout",
+    "receiveTimestamp": "2026-03-06T16:05:32.140983077Z",
+    "resource": {
+      "labels": {
+        "configuration_name": "agnostic-live-backend",
+        "location": "us-central1",
+        "project_id": "stok-7bc5c",
+        "revision_name": "agnostic-live-backend-00061-vc8",
+        "service_name": "agnostic-live-backend"
+      },
+      "type": "cloud_run_revision"
+    },
+    "textPayload": "DEBUG TRANSCRIPT OUTPUT:  cualquier",
+    "timestamp": "2026-03-06T16:05:32.015931Z"
+  },
+  {
+    "insertId": "69aafb4b000dbb0e17e546a9",
+    "labels": {
+      "instanceId": "00da6cd2c44a97e586f513529829d26c3d791f7e96e5b20ff4e4e5c90338377c5abc49030cd308529c1eb815114d7588e4b823208681535df36f1e4e09acb5187bf74e2e996cac2cab9235d155"
+    },
+    "logName": "projects/stok-7bc5c/logs/run.googleapis.com%2Fstdout",
+    "receiveTimestamp": "2026-03-06T16:05:32.140983077Z",
+    "resource": {
+      "labels": {
+        "configuration_name": "agnostic-live-backend",
+        "location": "us-central1",
+        "project_id": "stok-7bc5c",
+        "revision_name": "agnostic-live-backend-00061-vc8",
+        "service_name": "agnostic-live-backend"
+      },
+      "type": "cloud_run_revision"
+    },
+    "textPayload": "DEBUG TRANSCRIPT OUTPUT:  evitar",
+    "timestamp": "2026-03-06T16:05:31.899854Z"
+  },
+  {
+    "insertId": "69aafb4b000ced87edb4db67",
+    "labels": {
+      "instanceId": "00da6cd2c44a97e586f513529829d26c3d791f7e96e5b20ff4e4e5c90338377c5abc49030cd308529c1eb815114d7588e4b823208681535df36f1e4e09acb5187bf74e2e996cac2cab9235d155"
+    },
+    "logName": "projects/stok-7bc5c/logs/run.googleapis.com%2Fstdout",
+    "receiveTimestamp": "2026-03-06T16:05:32.140983077Z",
+    "resource": {
+      "labels": {
+        "configuration_name": "agnostic-live-backend",
+        "location": "us-central1",
+        "project_id": "stok-7bc5c",
+        "revision_name": "agnostic-live-backend-00061-vc8",
+        "service_name": "agnostic-live-backend"
+      },
+      "type": "cloud_run_revision"
+    },
+    "textPayload": "DEBUG TRANSCRIPT OUTPUT:  para",
+    "timestamp": "2026-03-06T16:05:31.847239Z"
+  },
+  {
+    "insertId": "69aafb4b000a29170ed87783",
+    "labels": {
+      "instanceId": "00da6cd2c44a97e586f513529829d26c3d791f7e96e5b20ff4e4e5c90338377c5abc49030cd308529c1eb815114d7588e4b823208681535df36f1e4e09acb5187bf74e2e996cac2cab9235d155"
+    },
+    "logName": "projects/stok-7bc5c/logs/run.googleapis.com%2Fstdout",
+    "receiveTimestamp": "2026-03-06T16:05:31.807847686Z",
+    "resource": {
+      "labels": {
+        "configuration_name": "agnostic-live-backend",
+        "location": "us-central1",
+        "project_id": "stok-7bc5c",
+        "revision_name": "agnostic-live-backend-00061-vc8",
+        "service_name": "agnostic-live-backend"
+      },
+      "type": "cloud_run_revision"
+    },
+    "textPayload": "DEBUG TRANSCRIPT OUTPUT:  la corriente",
+    "timestamp": "2026-03-06T16:05:31.665879Z"
+  },
+  {
+    "insertId": "69aafb4b0009c289d747dda1",
+    "labels": {
+      "instanceId": "00da6cd2c44a97e586f513529829d26c3d791f7e96e5b20ff4e4e5c90338377c5abc49030cd308529c1eb815114d7588e4b823208681535df36f1e4e09acb5187bf74e2e996cac2cab9235d155"
+    },
+    "logName": "projects/stok-7bc5c/logs/run.googleapis.com%2Fstdout",
+    "receiveTimestamp": "2026-03-06T16:05:31.807847686Z",
+    "resource": {
+      "labels": {
+        "configuration_name": "agnostic-live-backend",
+        "location": "us-central1",
+        "project_id": "stok-7bc5c",
+        "revision_name": "agnostic-live-backend-00061-vc8",
+        "service_name": "agnostic-live-backend"
+      },
+      "type": "cloud_run_revision"
+    },
+    "textPayload": "DEBUG IN: Received vision frame from camera",
+    "timestamp": "2026-03-06T16:05:31.639625Z"
+  },
+  {
+    "insertId": "69aafb4b000877e9a7782454",
+    "labels": {
+      "instanceId": "00da6cd2c44a97e586f513529829d26c3d791f7e96e5b20ff4e4e5c90338377c5abc49030cd308529c1eb815114d7588e4b823208681535df36f1e4e09acb5187bf74e2e996cac2cab9235d155"
+    },
+    "logName": "projects/stok-7bc5c/logs/run.googleapis.com%2Fstdout",
+    "receiveTimestamp": "2026-03-06T16:05:31.807847686Z",
+    "resource": {
+      "labels": {
+        "configuration_name": "agnostic-live-backend",
+        "location": "us-central1",
+        "project_id": "stok-7bc5c",
+        "revision_name": "agnostic-live-backend-00061-vc8",
+        "service_name": "agnostic-live-backend"
+      },
+      "type": "cloud_run_revision"
+    },
+    "textPayload": "DEBUG TRANSCRIPT OUTPUT:  cortar",
+    "timestamp": "2026-03-06T16:05:31.554985Z"
+  },
+  {
+    "insertId": "69aafb4b0005c5c01352352d",
+    "labels": {
+      "instanceId": "00da6cd2c44a97e586f513529829d26c3d791f7e96e5b20ff4e4e5c90338377c5abc49030cd308529c1eb815114d7588e4b823208681535df36f1e4e09acb5187bf74e2e996cac2cab9235d155"
+    },
+    "logName": "projects/stok-7bc5c/logs/run.googleapis.com%2Fstdout",
+    "receiveTimestamp": "2026-03-06T16:05:31.476172402Z",
+    "resource": {
+      "labels": {
+        "configuration_name": "agnostic-live-backend",
+        "location": "us-central1",
+        "project_id": "stok-7bc5c",
+        "revision_name": "agnostic-live-backend-00061-vc8",
+        "service_name": "agnostic-live-backend"
+      },
+      "type": "cloud_run_revision"
+    },

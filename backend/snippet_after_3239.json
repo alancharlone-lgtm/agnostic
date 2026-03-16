@@ -1,0 +1,100 @@
+﻿  },
+  {
+    "insertId": "69aafbb500057ef6e26101e1",
+    "labels": {
+      "instanceId": "00da6cd2c44a97e586f513529829d26c3d791f7e96e5b20ff4e4e5c90338377c5abc49030cd308529c1eb815114d7588e4b823208681535df36f1e4e09acb5187bf74e2e996cac2cab9235d155"
+    },
+    "logName": "projects/stok-7bc5c/logs/run.googleapis.com%2Fstdout",
+    "receiveTimestamp": "2026-03-06T16:07:17.375124058Z",
+    "resource": {
+      "labels": {
+        "configuration_name": "agnostic-live-backend",
+        "location": "us-central1",
+        "project_id": "stok-7bc5c",
+        "revision_name": "agnostic-live-backend-00061-vc8",
+        "service_name": "agnostic-live-backend"
+      },
+      "type": "cloud_run_revision"
+    },
+    "textPayload": "? Invocando AGENTE ADK de Gu?a Visual - Tarea: Conexi?n de componente en: Reparaci?n general",
+    "timestamp": "2026-03-06T16:07:17.360182Z"
+  },
+  {
+    "insertId": "69aafbb500057eefc01d65f6",
+    "labels": {
+      "instanceId": "00da6cd2c44a97e586f513529829d26c3d791f7e96e5b20ff4e4e5c90338377c5abc49030cd308529c1eb815114d7588e4b823208681535df36f1e4e09acb5187bf74e2e996cac2cab9235d155"
+    },
+    "logName": "projects/stok-7bc5c/logs/run.googleapis.com%2Fstdout",
+    "receiveTimestamp": "2026-03-06T16:07:17.375124058Z",
+    "resource": {
+      "labels": {
+        "configuration_name": "agnostic-live-backend",
+        "location": "us-central1",
+        "project_id": "stok-7bc5c",
+        "revision_name": "agnostic-live-backend-00061-vc8",
+        "service_name": "agnostic-live-backend"
+      },
+      "type": "cloud_run_revision"
+    },
+    "textPayload": "? BACKGROUND WORKER iniciado para 'generar_guia_visual_ensamblaje'",
+    "timestamp": "2026-03-06T16:07:17.360175Z"
+  },
+  {
+    "insertId": "69aafbb500057d3338e4bc58",
+    "labels": {
+      "instanceId": "00da6cd2c44a97e586f513529829d26c3d791f7e96e5b20ff4e4e5c90338377c5abc49030cd308529c1eb815114d7588e4b823208681535df36f1e4e09acb5187bf74e2e996cac2cab9235d155"
+    },
+    "logName": "projects/stok-7bc5c/logs/run.googleapis.com%2Fstdout",
+    "receiveTimestamp": "2026-03-06T16:07:17.375124058Z",
+    "resource": {
+      "labels": {
+        "configuration_name": "agnostic-live-backend",
+        "location": "us-central1",
+        "project_id": "stok-7bc5c",
+        "revision_name": "agnostic-live-backend-00061-vc8",
+        "service_name": "agnostic-live-backend"
+      },
+      "type": "cloud_run_revision"
+    },
+    "textPayload": "? HEAVY TOOL: Enviando ACK inmediato a Gemini para 'generar_guia_visual_ensamblaje' y lanzando trabajo en background real...",
+    "timestamp": "2026-03-06T16:07:17.359731Z"
+  },
+  {
+    "insertId": "69aafbb500057d2f783d34dc",
+    "labels": {
+      "instanceId": "00da6cd2c44a97e586f513529829d26c3d791f7e96e5b20ff4e4e5c90338377c5abc49030cd308529c1eb815114d7588e4b823208681535df36f1e4e09acb5187bf74e2e996cac2cab9235d155"
+    },
+    "logName": "projects/stok-7bc5c/logs/run.googleapis.com%2Fstdout",
+    "receiveTimestamp": "2026-03-06T16:07:17.375124058Z",
+    "resource": {
+      "labels": {
+        "configuration_name": "agnostic-live-backend",
+        "location": "us-central1",
+        "project_id": "stok-7bc5c",
+        "revision_name": "agnostic-live-backend-00061-vc8",
+        "service_name": "agnostic-live-backend"
+      },
+      "type": "cloud_run_revision"
+    },
+    "textPayload": "?? SNAPSHOT WARNING: No hay frame disponible al momento del dispatch de 'generar_guia_visual_ensamblaje'",
+    "timestamp": "2026-03-06T16:07:17.359727Z"
+  },
+  {
+    "insertId": "69aafbb500057d2a55684e2f",
+    "labels": {
+      "instanceId": "00da6cd2c44a97e586f513529829d26c3d791f7e96e5b20ff4e4e5c90338377c5abc49030cd308529c1eb815114d7588e4b823208681535df36f1e4e09acb5187bf74e2e996cac2cab9235d155"
+    },
+    "logName": "projects/stok-7bc5c/logs/run.googleapis.com%2Fstdout",
+    "receiveTimestamp": "2026-03-06T16:07:17.375124058Z",
+    "resource": {
+      "labels": {
+        "configuration_name": "agnostic-live-backend",
+        "location": "us-central1",
+        "project_id": "stok-7bc5c",
+        "revision_name": "agnostic-live-backend-00061-vc8",
+        "service_name": "agnostic-live-backend"
+      },
+      "type": "cloud_run_revision"
+    },
+    "textPayload": "DEBUG TOOL START: generar_guia_visual_ensamblaje({'detalles_tecnicos': 'Conexi?n de cables (negro, marr?n, azul, rojo) a bornes centrales de m?dulo blanco. Verificar polaridad y ajuste seg?n normativa vigente.'}) [NON_BLOCKING (Siguiendo hablando...)]",
+    "timestamp": "2026-03-06T16:07:17.359722Z"

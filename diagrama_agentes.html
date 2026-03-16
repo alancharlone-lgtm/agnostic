@@ -1,0 +1,209 @@
+<!DOCTYPE html>
+<html lang="es">
+
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Agnostic - Ecosistema de Agentes por Modo</title>
+    <!-- Tailwind CSS for styling -->
+    <script src="https://cdn.tailwindcss.com"></script>
+    <style>
+        @import url('https://fonts.googleapis.com/css2?family=Outfit:wght@300;400;600;700&display=swap');
+
+        body {
+            background-color: #020617;
+            /* Slate 950 */
+            color: #f8fafc;
+            font-family: 'Outfit', sans-serif;
+            scroll-behavior: smooth;
+        }
+
+        .premium-card {
+            background: rgba(30, 41, 59, 0.4);
+            backdrop-filter: blur(16px);
+            border: 1px solid rgba(255, 255, 255, 0.08);
+            border-radius: 2rem;
+            box-shadow: 0 25px 50px -12px rgba(0, 0, 0, 0.6);
+        }
+
+        .glow-title {
+            text-shadow: 0 0 30px rgba(56, 189, 248, 0.4);
+        }
+
+        .nav-link {
+            transition: all 0.3s;
+            border-bottom: 2px solid transparent;
+        }
+
+        .nav-link:hover {
+            color: #38bdf8;
+            border-bottom-color: #38bdf8;
+        }
+
+        /* Mermaid custom tweaks */
+        .mermaid {
+            display: flex;
+            justify-content: center;
+            width: 100%;
+        }
+
+        svg {
+            max-width: 100% !important;
+            height: auto !important;
+        }
+    </style>
+</head>
+
+<body class="flex flex-col items-center p-6 min-h-screen">
+
+    <!-- Header & Nav -->
+    <header class="text-center mb-12 mt-8 animate-fade-in">
+        <h1
+            class="text-5xl font-bold bg-gradient-to-r from-sky-400 to-indigo-500 bg-clip-text text-transparent mb-4 glow-title">
+            Ecosistema Agnostic v2.5
+        </h1>
+        <nav class="flex gap-8 justify-center text-slate-400 font-medium">
+            <a href="#industrial" class="nav-link">🏭 Industrial</a>
+            <a href="#residencial" class="nav-link">🏠 Residencial</a>
+            <a href="#hogar" class="nav-link">🧑‍🏫 Hogar / DIY</a>
+        </nav>
+    </header>
+
+    <!-- 1. MODO INDUSTRIAL -->
+    <section id="industrial" class="w-full max-w-7xl mb-24 scroll-mt-24">
+        <div class="flex items-center gap-4 mb-6">
+            <span class="p-3 bg-blue-500/20 rounded-lg text-blue-400 text-2xl">🏭</span>
+            <h2 class="text-3xl font-bold text-slate-100">Modo Industrial (B2B)</h2>
+        </div>
+        <div class="premium-card p-10">
+            <pre class="mermaid">
+                graph TD
+                    classDef orq fill:#1e40af,stroke:#60a5fa,stroke-width:3px,color:#fff
+                    classDef loop fill:#0f172a,stroke:#38bdf8,stroke-dasharray: 5 5,color:#38bdf8
+                    classDef alert fill:#991b1b,stroke:#f87171,stroke-width:2px,color:#fff
+                    classDef erp fill:#4c1d95,stroke:#a78bfa,stroke-width:1px,color:#fff
+
+                    ERP[💻 SAP / ERP <br/> Inyección de Ticket]:::erp --> OrqI[🧠 Orquestador Industrial <br/> Gemini Live]:::orq
+                    
+                    subgraph Capa_Paralela["🔄 Bucle HSE de Seguridad (Always-On)"]
+                        Watchdog[🛡️ Safety Watchdog <br/> 2s Check]:::loop
+                        Watchdog -- "Riesgo: Falta EPP" --> BargeIn[🔊 VOZ: ¡DETENTE! <br/> Inyección Barge-In]:::alert
+                    end
+
+                    OrqI --> Task[📋 Preventive Checklist]
+                    Task -- "Herramienta Blocking" --> LOTO[🛡️ Lockout/Tagout Check]
+                    
+                    subgraph Pre_Fetch["🔍 Optimización de Latencia"]
+                        Sensors[📡 IOT Sensors] --> Context[💾 Recámara de Memoria]
+                        Context -.-> OrqI
+                    end
+
+                    OrqI --> WO[📝 Cierre de Orden <br/> Automatizado]:::erp
+            </pre>
+            <div class="mt-8 grid grid-cols-1 md:grid-cols-2 gap-6 text-slate-400 text-sm">
+                <p>🚀 **Foco**: Integración con ERPs y Maximización de la Seguridad HSE.</p>
+                <p>🛡️ **Agentes Key**: Watchdog de Seguridad (Intervención Verbal Directa).</p>
+            </div>
+        </div>
+    </section>
+
+    <!-- 2. MODO RESIDENCIAL -->
+    <section id="residencial" class="w-full max-w-7xl mb-24 scroll-mt-24">
+        <div class="flex items-center gap-4 mb-6">
+            <span class="p-3 bg-teal-500/20 rounded-lg text-teal-400 text-2xl">🏠</span>
+            <h2 class="text-3xl font-bold text-slate-100">Modo Residencial (Service de Calle)</h2>
+        </div>
+        <div class="premium-card p-10">
+            <pre class="mermaid">
+                graph TD
+                    classDef orq fill:#134e4a,stroke:#2dd4bf,stroke-width:3px,color:#fff
+                    classDef loop fill:#0f172a,stroke:#2dd4bf,stroke-dasharray: 5 5,color:#2dd4bf
+                    classDef tool fill:#1e293b,stroke:#94a3b8,stroke-width:1px,color:#fff
+                    classDef alert fill:#991b1b,stroke:#f87171,stroke-width:2px,color:#fff
+                    classDef bus fill:#020617,stroke:#334155,stroke-width:1px,color:#94a3b8
+
+                    Cam[📷 Cámara Always-On]
+
+                    %% Ramas disparadas en PARALELO
+                    Cam --> Vision[👁️ Eagle Eye Agent <br/> 8s Identify]:::loop
+                    Cam --> OrqR[🧠 ORQUESTADOR LIVE <br/> Gemini 2.5 Flash Audio]:::orq
+                    Cam --> Watchdog[🛡️ Safety Watchdog <br/> 2s Check]:::loop
+                    
+                    subgraph Bus_Interact["⚡ Capa de Interacción (ConnectionManager)"]
+                        Vision -- "PRE-CARGA <br/> Inyecta datos en recámara" --> Context[💾 Contexto Silencioso]
+                        Watchdog -- "INTERRUPCIÓN <br/> Fuerza interrupción verbal" --> BargeIn[🔊 Alerta Barge-In]:::alert
+                    end
+                    
+                    Context -.->|Disponible al hablar| OrqR
+                    BargeIn -.->|Interrumpe mientras habla| OrqR
+                    
+                    OrqR --> FetchMeli[🛒 MercadoLibre Agent]:::tool
+                    FetchMeli -- "Parallel Search" --> Prices[💰 Precios Reales]
+                    
+                    OrqR --> Stock[🚐 Stock en Camioneta]:::tool
+                    
+                    Prices -.->|Deep Context| OrqR
+                    Stock -.->|Deep Context| OrqR
+            </pre>
+            <div class="mt-8 grid grid-cols-1 md:grid-cols-2 gap-6 text-slate-400 text-sm">
+                <p>⚡ **Procesamiento Paralelo**: Los 3 caminos salen de la cámara al mismo tiempo. No hay espera.</p>
+                <p>🔊 **Barge-In**: El Watchdog puede 'gritar' en medio de una respuesta de Gemini para detener al
+                    técnico.</p>
+            </div>
+        </div>
+    </section>
+
+    <!-- 3. MODO HOGAR / APRENDIZ -->
+    <section id="hogar" class="w-full max-w-7xl mb-24 scroll-mt-24">
+        <div class="flex items-center gap-4 mb-6">
+            <span class="p-3 bg-fuchsia-500/20 rounded-lg text-fuchsia-400 text-2xl">🧑‍🏫</span>
+            <h2 class="text-3xl font-bold text-slate-100">Modo Hogar (Aprendiz / DIY)</h2>
+        </div>
+        <div class="premium-card p-10">
+            <pre class="mermaid">
+                graph TD
+                    classDef orq fill:#701a75,stroke:#e879f9,stroke-width:3px,color:#fff
+                    classDef visual fill:#1e1b4b,stroke:#818cf8,stroke-width:2px,color:#fff
+                    classDef nudge fill:#0f172a,stroke:#e879f9,stroke-dasharray: 5 5,color:#e879f9
+
+                    User[👤 Dueño de Casa] --> OrqH[🧠 Tutor Gemini <br/> Modo Aprendiz]:::orq
+                    
+                    subgraph Asistencia_Visual["🖼️ Capa de Guía Visual (Nano Banana)"]
+                        Nudge[🕵️ Nudge Loop <br/> 5s Awake]:::nudge
+                        Nudge -- "Trigger if confused" --> GenImg[🖼️ visual_guide_generator <br/> Gemini 2.5 Image]:::visual
+                    end
+
+                    GenImg -- "Push WebSocket" --> Overlay[📲 Overlay en Pantalla <br/> Anotaciones Técnicas]
+                    
+                    OrqH --> StepByStep[📜 Guía Paso a Paso]
+                    StepByStep -- "Verifica Imagen" --> Validate[✅ Confirmación de Movimiento]
+            </pre>
+            <div class="mt-8 grid grid-cols-1 md:grid-cols-2 gap-6 text-slate-400 text-sm">
+                <p>🖼️ **Foco**: Guía visual paso a paso y lenguaje simplificado para no-expertos.</p>
+                <p>🍌 **Agente Key**: Visual Guide Generator (Gemini 2.5 Flash Image) con Real Overlay.</p>
+            </div>
+        </div>
+    </section>
+
+    <footer class="text-slate-500 text-sm mb-12">
+        Agnostic Ecosystem Architecture • Built with Gemini 2.5 Flash
+    </footer>
+
+    <!-- Script para inicializar Mermaid.js -->
+    <script type="module">
+        import mermaid from 'https://cdn.jsdelivr.net/npm/mermaid@10/dist/mermaid.esm.min.mjs';
+
+        mermaid.initialize({
+            startOnLoad: true,
+            theme: 'dark',
+            securityLevel: 'loose',
+            fontFamily: 'Outfit',
+            flowchart: {
+                htmlLabels: true,
+                curve: 'basis'
+            }
+        });
+    </script>
+</body>
+
+</html>

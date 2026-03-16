@@ -1,0 +1,52 @@
+[
+  {
+    "id_reparacion": "case-001-heladera-gafa",
+    "categoria": "Refrigeración",
+    "marca_modelo": "Heladera Comercial Gafa HGF-380",
+    "sintoma_reportado": "La heladera arranca y corta a los 3 segundos, se escucha un click del relé",
+    "diagnostico_real": "Capacitor de arranque del compresor seco. Medido: 8µF (nominal: 45µF). El compresor no logra el torque de arranque y el protector térmico corta por sobrecorriente.",
+    "solucion_aplicada": "1. Desconectar alimentación 220V y verificar con buscapolo. 2. Retirar tapa del compartimento del compresor. 3. Desconectar el capacitor CBB65 de 45µF. 4. Medir con capacímetro: lectura de 8µF confirma falla. 5. Reemplazar por capacitor nuevo de 45µF/450V. 6. Reconectar y verificar arranque: compresor arranca y mantiene funcionamiento estable. 7. Medir consumo: 2.1A (dentro de rango nominal 1.8-2.5A).",
+    "embedding": [],
+    "timestamp": "2025-11-15T14:30:00Z"
+  },
+  {
+    "id_reparacion": "case-002-lavarropa-whirlpool",
+    "categoria": "Lavarropas",
+    "marca_modelo": "Lavarropas Whirlpool WNQ76A",
+    "sintoma_reportado": "El lavarropas no desagota, queda con agua y tira error E3 en display",
+    "diagnostico_real": "Bomba de desagote trabada con acumulación de pelusas y un objeto pequeño (moneda). El motor de la bomba gira pero no genera presión suficiente. Error E3 = timeout de desagote.",
+    "solucion_aplicada": "1. Desconectar de la corriente. 2. Ubicar la trampa de pelusas en el frente inferior. 3. Colocar recipiente debajo y abrir la tapa. 4. Drenar el agua residual. 5. Extraer moneda de $1 y bola de pelusas compactadas. 6. Verificar giro libre del impulsor de la bomba con el dedo. 7. Cerrar trampa, reconectar y ejecutar ciclo de centrifugado: desagota correctamente en 45 segundos. Error E3 desaparece.",
+    "embedding": [],
+    "timestamp": "2025-11-28T09:15:00Z"
+  },
+  {
+    "id_reparacion": "case-003-aire-carrier",
+    "categoria": "Aire Acondicionado",
+    "marca_modelo": "Aire Acondicionado Split Carrier 3000 frigorías",
+    "sintoma_reportado": "El aire prende pero no enfría, la unidad exterior no arranca el compresor",
+    "diagnostico_real": "Fuga de gas refrigerante R410A en la conexión flare de la línea de líquido. Presión del sistema: 30 PSI (nominal operando: 120 PSI). El compresor tiene protección por baja presión que impide el arranque.",
+    "solucion_aplicada": "1. Conectar manifold de refrigeración y verificar presiones: alta=30PSI, baja=30PSI (ecualizado, confirma gas insuficiente). 2. Aplicar detector electrónico de fugas en conexiones. 3. Detectar fuga en fitting flare de línea de líquido en unidad exterior. 4. Realizar vacío con bomba de vacío a -500 micrones durante 30 minutos. 5. Reapretar fitting flare con torquímetro a 40Nm. 6. Cargar 950g de R410A por peso (indicación de placa). 7. Verificar presiones en operación: alta=280PSI, baja=115PSI. Temperatura de salida: 12°C. Sistema operativo.",
+    "embedding": [],
+    "timestamp": "2025-12-03T16:45:00Z"
+  },
+  {
+    "id_reparacion": "case-004-tablero-siemens",
+    "categoria": "Tableros Eléctricos",
+    "marca_modelo": "Tablero Siemens con Térmica C32",
+    "sintoma_reportado": "Saltan las térmicas constantemente en un tablero comercial, se siente olor a quemado",
+    "diagnostico_real": "Toma trifásica con borne flojo generando arco eléctrico. El borne L2 tenía carbonización visible por calentamiento resistivo. La térmica C32 saltaba por sobrecorriente intermitente causada por el arco.",
+    "solucion_aplicada": "1. Cortar alimentación general del tablero desde el seccionador principal. 2. Verificar ausencia de tensión con multímetro en los 3 bornes. 3. Desmontar la toma trifásica del riel DIN. 4. Limpiar carbonización del borne L2 con limpia contactos. 5. Reemplazar el borne dañado y reapretar todos los bornes a 2.5Nm con torquímetro. 6. Verificar aislación con megóhmetro: >500MΩ entre fases y tierra. 7. Reconectar y verificar con cámara termográfica: temperatura estable en todos los bornes tras 15 minutos de carga.",
+    "embedding": [],
+    "timestamp": "2025-12-10T11:20:00Z"
+  },
+  {
+    "id_reparacion": "case-005-motor-weg",
+    "categoria": "Motores",
+    "marca_modelo": "Motor WEG W22 2HP Monofásico",
+    "sintoma_reportado": "Motor de bomba de agua no arranca, zumba fuerte pero no gira",
+    "diagnostico_real": "Capacitor de marcha abierto (circuito abierto). El bobinado auxiliar no recibe corriente, impidiendo generar el campo rotatorio necesario para el arranque. El motor zumba porque el bobinado principal sí energiza pero no genera torque suficiente sin el auxiliar.",
+    "solucion_aplicada": "1. Desconectar motor de la alimentación y verificar con multímetro. 2. Abrir caja de conexiones del motor. 3. Identificar capacitor de marcha: CBB60 25µF/450V. 4. Medir con capacímetro: lectura OL (circuito abierto, confirmado). 5. Reemplazar por capacitor nuevo 25µF/450V con mismas terminales fast-on. 6. Verificar conexionado: U1-Z2 a línea, U2-Z1 a capacitor. 7. Alimentar y verificar: motor arranca correctamente, giro horario confirmado. Consumo medido: 8.5A (nominal: 9.2A).",
+    "embedding": [],
+    "timestamp": "2025-12-18T08:00:00Z"
+  }
+]
