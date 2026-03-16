@@ -18,6 +18,53 @@ Backend hosted on **Google Cloud Run** — 100% serverless, scalable, and always
 - **RAG Hive Mind** — verified repairs stored as vector embeddings in Firestore
 - **Flutter (Android)** for the fully reactive, hands-free UI
 
+### 1. The Big Picture (Macro Architecture)
+A high-level view of how the system orchestrates data between the user, the cloud, and external APIs.
+
+```mermaid
+flowchart TD
+    %% Estilos limpios
+    classDef mobile fill:#0d2b5a,stroke:#2a6dd9,color:#fff
+    classDef cloud  fill:#0a1f0a,stroke:#2e7a2e,color:#fff
+    classDef gemini fill:#2a0808,stroke:#8b2020,color:#fff
+    classDef external fill:#1a1000,stroke:#664400,color:#fff
+
+    User(("🧑‍🔧 User\n(Voice & Camera)"))
+    
+    subgraph Frontend ["📱 Flutter App (Frontend)"]
+        UI["Hands-Free Interface\nMic & Cam"]:::mobile
+    end
+
+    subgraph Backend ["☁️ Google Cloud Run (Backend)"]
+        ROOT["🧠 ADK Root Orchestrator\n(gemini-2.0-flash-lite)"]:::cloud
+        AGENTS["⚙️ Platoon of Specialized Agents\n(Safety, Repair, Logistics, RAG)"]:::cloud
+    end
+
+    subgraph GoogleAI ["🤖 Google GenAI Ecosystem"]
+        GEMINI["🔴 Gemini 2.0 Flash Live\n(Bidirectional Streaming)"]:::gemini
+        IMAGEN["🖼️ Imagen 3 / NanoBanana\n(Visual Generation)"]:::gemini
+    end
+
+    subgraph External ["🌐 External Grounding & Data"]
+        FIREBASE[("🔥 Firestore\n(Vector DB / Hive Mind)")]:::external
+        APIS["🌍 External APIs\n(Maps, Routes, MercadoLibre)"]:::external
+    end
+
+    %% Conexiones principales (Flujo macro)
+    User <-->|Speaks & Shows| UI
+    UI <-->|"WebSocket\n(PCM Audio + Video)"| Backend
+    Backend <-->|"Live API Session"| GEMINI
+    ROOT -->|"Delegates Tasks"| AGENTS
+    AGENTS -->|"Inpainting"| IMAGEN
+    AGENTS <-->|"Retrieves Past Repairs"| FIREBASE
+    AGENTS <-->|"Live Prices & Traffic"| APIS
+```
+
+---
+
+### 2. The Deep Dive (Technical Flow)
+A detailed look at the internal agent routing and data flows within the Agnostic backend.
+
 ```mermaid
 flowchart LR
     %% ─── ESTILOS ────────────────────────────────────────
