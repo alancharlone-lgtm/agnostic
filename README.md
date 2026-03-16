@@ -18,7 +18,109 @@ Backend hosted on **Google Cloud Run** — 100% serverless, scalable, and always
 - **RAG Hive Mind** — verified repairs stored as vector embeddings in Firestore
 - **Flutter (Android)** for the fully reactive, hands-free UI
 
-![Agnostic Architecture Diagram](./architecture.png)
+```mermaid
+flowchart LR
+    %% ─── ESTILOS ────────────────────────────────────────
+    classDef frontend  fill:#0d2b5a,stroke:#2a6dd9,color:#90caff
+    classDef backend   fill:#0a1f0a,stroke:#2e7a2e,color:#85d485
+    classDef gemini    fill:#2a0808,stroke:#8b2020,color:#ff8a7a
+    classDef adk       fill:#0f2a0f,stroke:#3a8a3a,color:#90e090
+    classDef parallel  fill:#142a14,stroke:#4a9a4a,color:#b0f0b0
+    classDef rag       fill:#1a1000,stroke:#7a5000,color:#ffc266
+    classDef google    fill:#1a1000,stroke:#664400,color:#ffd54f
+    classDef firebase  fill:#1a0800,stroke:#883300,color:#ff9a65
+    classDef ml        fill:#001a22,stroke:#005577,color:#4dd0e1
+    classDef tools     fill:#141414,stroke:#444,color:#aaa
+
+    %% ─── FRONTEND ───────────────────────────────────────
+    subgraph FE["📱 Flutter Android — Frontend"]
+        MIC["🎤 Microphone\nPCM 16kHz Input"]:::frontend
+        CAM["📷 Camera\n1 FPS JPEG Frames"]:::frontend
+        SPK["🔊 Speaker\nMP3 Audio Output"]:::frontend
+        BB["🟩 Bounding Box Overlay"]:::frontend
+        VG["🖼️ Visual Guide Overlay\nImagen 3 PNG on camera"]:::frontend
+        LC["🛒 Logistics Card\nTappable ML links"]:::frontend
+        WSC["🔌 WebSocket Client\nwss:// auto-reconnect"]:::frontend
+        GPS["📡 GPS Location\nSent on connect"]:::frontend
+    end
+
+    %% ─── BACKEND ────────────────────────────────────────
+    subgraph BE["☁️ Google Cloud Run — FastAPI Backend"]
+        WSS["🌐 WebSocket Server\nFastAPI + ConnectionManager"]:::backend
+        GL["🔴 Gemini 2.0 Flash Live API\nBidirectional audio + vision, barge-in, function_calls"]:::gemini
+
+        subgraph ORCH["ADK Orchestration Layer"]
+            ROOT["🧠 Root Orchestrator\nOrquestador_Principal_Reparaciones\ngemini-2.0-flash-lite-preview"]:::adk
+            subgraph PAR["⚡ ParallelAgent (simultaneous)"]
+                WEB["🌐 Web Manual Explorer\nGoogleSearchTool + url_context"]:::parallel
+                FAULT["🔍 Fault Investigator\nCommon defects from tech forums"]:::parallel
+            end
+            INTERNAL["📁 Internal Manual DB\nbuscador_interno_manuales"]:::adk
+        end
+
+        subgraph SPECIALISTS["ADK Specialist Agents"]
+            SAFETY["🛑 Safety Visual Gate\nBlocks until breaker OFF confirmed by camera"]:::adk
+            EAGLE["👁️ Eagle Eye Vision\nadk_vision_precision.py\nBounding box JSON → WebSocket"]:::adk
+            REPAIR["🔧 Direct Repair Architect\nadk_direct_repair.py — Hogar mode"]:::adk
+            MENTOR["🎓 Socratic Mentor\nadk_universal_mentor.py — Aprendizaje mode"]:::adk
+            LOGIS["📦 Logistics & Pricing Agent\nadk_logistica.py"]:::adk
+            IMAGEN["🖼️ Imagen 3 Guide\nadk_vision_guide_v2.py → Nano Banana API"]:::adk
+        end
+
+        RAG["🧠 RAG Hive Mind\nrag_knowledge_base.py\ncosine similarity vector search"]:::rag
+        FLASH["🔦 Flashlight Control\nVoice-activated LED tool"]:::tools
+    end
+
+    %% ─── EXTERNAL APIS ──────────────────────────────────
+    subgraph EXT["🌐 External APIs & Google GenAI"]
+        GLIVE["Gemini 2.0 Flash Live"]:::google
+        FLITE["Gemini 2.0 Flash Lite Preview\nAll ADK agent model calls"]:::google
+        EMBED["Text Embeddings\ngemini-embedding-001\n768-dim vectors"]:::google
+        IM3["Imagen 3\nNano Banana API\nPhotorealistic inpainting"]:::google
+        FS["🔥 Firebase Firestore\nVector DB — Hive Mind storage"]:::firebase
+        MAPS["🗺️ Google Maps API\nNearby spare parts stores"]:::google
+        ROUTES["🚦 Google Routes API\nReal-time traffic routing"]:::google
+        SEARCH["🔍 Google Search API\nManuals + forum grounding"]:::google
+        MLAPI["🛒 MercadoLibre API\nLive pricing + direct links"]:::ml
+    end
+
+    %% ─── CONEXIONES: FRONTEND ↔ BACKEND ─────────────────
+    WSC <-->|"PCM Audio 16kHz"| WSS
+    CAM -->|"JPEG Frames Base64"| WSS
+    SPK <---|"MP3 Audio"| WSS
+    BB <---|"Bounding Box JSON"| EAGLE
+    VG <---|"Imagen 3 PNG"| IMAGEN
+    LC <---|"MercadoLibre links"| LOGIS
+    GPS -->|"Lat/Lon on connect"| LOGIS
+
+    %% ─── CONEXIONES: BACKEND INTERNO ────────────────────
+    WSS <-->|"Bidi stream"| GL
+    GL -->|"function_call triggers"| ROOT
+    ROOT --> INTERNAL
+    ROOT --> PAR
+    PAR --> WEB
+    PAR --> FAULT
+    ROOT --> SAFETY
+    ROOT --> EAGLE
+    ROOT --> REPAIR
+    ROOT --> MENTOR
+    ROOT --> LOGIS
+    ROOT --> IMAGEN
+    WSS --> FLASH
+    RAG -->|"Verified repairs context"| GL
+
+    %% ─── CONEXIONES: BACKEND → EXTERNAL ─────────────────
+    GL <-->|"Audio stream"| GLIVE
+    ROOT -->|"Agent model calls"| FLITE
+    RAG -->|"Embed queries"| EMBED
+    RAG <-->|"Vector search"| FS
+    IMAGEN -->|"Inpainting"| IM3
+    LOGIS --> MAPS
+    LOGIS --> ROUTES
+    WEB -->|"Grounding"| SEARCH
+    FAULT -->|"Grounding"| SEARCH
+    LOGIS -->|"Pricing"| MLAPI
+```
 
 ---
 
