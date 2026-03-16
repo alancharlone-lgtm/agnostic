@@ -617,7 +617,8 @@ class _CameraScreenState extends State<CameraScreen> {
         
         // Start streaming video frames (1 FPS)
         _cameraFrameTimer = Timer.periodic(const Duration(seconds: 1), (timer) async {
-           if (_isCameraInitialized && _controller != null) {
+           if (_isCameraInitialized && _controller != null && !_isCapturingFrame) {
+               _isCapturingFrame = true;
                try {
                    final XFile picture = await _controller!.takePicture();
                    final bytes = await picture.readAsBytes();
@@ -637,6 +638,8 @@ class _CameraScreenState extends State<CameraScreen> {
                    }
                } catch (e) {
                    debugPrint("Error capturing frame: $e");
+               } finally {
+                   _isCapturingFrame = false;
                }
            }
         });

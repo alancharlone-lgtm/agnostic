@@ -1113,8 +1113,7 @@ def _get_tool_declarations(mode: str, location: str = "Desconocida"):
     elif mode == "hogar":
         system_instruction = f"Localización GPS actual del Aprendiz: {location}.\n\n" + LEARNING_PROMPT
         tool_declarations = [
-             {"function_declarations": [{"name": "safety_guardian_agent", "description": "Evalúa los riesgos HSE de la tarea para el usuario inexperto.", "parameters": {"type": "OBJECT", "properties": {"machine": {"type": "STRING"}, "task": {"type": "STRING"}}}}]},
-             {"function_declarations": [{"name": "start_safety_monitoring", "description": "Inicia la vigilancia de seguridad continua. Ejecutar de manera asíncrona.", "parameters": {"type": "OBJECT", "properties": {}}}]},
+             # safety_guardian_agent temporalmente desactivado en hogar para estabilidad de sesión
              {"function_declarations": [{"name": "tutor_herramientas", "description": "Indica qué herramientas buscar en la caja.", "parameters": {"type": "OBJECT", "properties": {"tarea": {"type": "STRING"}}, "required": ["tarea"]}}]},
              {"function_declarations": [{"name": "evaluacion_paso_a_paso", "description": "Evalúa visualmente si el usuario completó el paso correctamente.", "parameters": {"type": "OBJECT", "properties": {"accion": {"type": "STRING"}}}}]},
              {"function_declarations": [{"name": "handle_vision_result", "description": "Guarda en memoria de forma silenciosa lo que ves en cámara (artefacto, fallas, coords de componentes).", "parameters": {"type": "OBJECT", "properties": {"tipo": {"type": "STRING"}, "marca": {"type": "STRING"}, "modelo": {"type": "STRING"}, "fallas_comunes": {"type": "ARRAY", "items": {"type": "STRING"}}, "componentes": {"type": "OBJECT", "description": "Diccionario clave-valor donde la clave es la pieza y el valor es el bounding box normalizado [ymin, xmin, ymax, xmax]. Ej: {'rele': [200, 100, 300, 400]}."}}}}]},
@@ -1337,7 +1336,14 @@ async def gemini_live_websocket(
         tools=tool_declarations if tool_declarations else None,
     )
 
-    try:
+    MAX_GEMINI_RETRIES = 5
+    gemini_retry_count = 0
+
+    while gemini_retry_count < MAX_GEMINI_RETRIES:
+      try:
+        if gemini_retry_count > 0:
+            print(f"🔄 AUTO-RECONEXIÓN: Intento {gemini_retry_count}/{MAX_GEMINI_RETRIES} de reconexión a Gemini Live...")
+            await asyncio.sleep(1)  # Brief pause before retry
         # Connect to the google genai Live API using the dedicated client_live
         # Using the exact model from the documentation
         async with client_live.aio.live.connect(model="gemini-2.5-flash-native-audio-preview-12-2025", config=config) as session:
@@ -1750,17 +1756,32 @@ async def gemini_live_websocket(
                 # proactive_ambient_loop()
             )
 
-    except Exception as e:
-        print(f"DEBUG CRITICAL: Error in Live Session Block: {e}")
-    finally:
-        # Unregister from ConnectionManager
-        manager.unregister(user_id)
-        # Soft close of local WebSocket
-        try:
-            await websocket.close()
-            print("DEBUG: Local WebSocket closed cleanly.")
-        except:
-            pass
+      except Exception as e:
+          err_str = str(e)
+          print(f"DEBUG CRITICAL: Error in Live Session Block: {e}")
+          # Auto-reconnect on transient Gemini errors (1011 Internal error / Deadline expired)
+          if "1011" in err_str or "Internal error" in err_str or "Deadline expired" in err_str or "unavailable" in err_str.lower():
+              gemini_retry_count += 1
+              if gemini_retry_count < MAX_GEMINI_RETRIES:
+                  print(f"🔄 Gemini 1011 detectado. Reconectando sesión... ({gemini_retry_count}/{MAX_GEMINI_RETRIES})")
+                  try:
+                      await websocket.send_json({"type": "reconnecting", "attempt": gemini_retry_count})
+                  except Exception:
+                      pass
+                  continue  # retry the while loop
+              else:
+                  print(f"🔄 Max reintentos alcanzado ({MAX_GEMINI_RETRIES}). Cerrando sesión.")
+          break  # Non-retriable error or max retries reached
+      else:
+          break  # Session ended cleanly (phone disconnected), no retry needed
+
+    # Final cleanup
+    manager.unregister(user_id)
+    try:
+        await websocket.close()
+        print("DEBUG: Local WebSocket closed cleanly.")
+    except:
+        pass
 
 if __name__ == "__main__":
     import uvicorn
